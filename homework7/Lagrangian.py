@@ -19,14 +19,19 @@ def findForces(potentialEnergy):
 
 def findKineticEnergy(mass, velocity):
     """
-    Calculates kinetic energy based off of mass, velocity
+    Calculates kinetic energies based off of list of masses and velocityies
 
-    Parameter: nass -  mass of the object
-               velocity - instantenous velocity of the object
+    Parameter: mass - list of masses of each object
+               velocity - instantenous velocities of each object
     #Output: Based off formula K = 1/2 mv^2, we can calculate kinetic energy
     """
-    K = 1/2 * mass * velocity ** 2
+    K = []
+    for i in range(0, len(mass)):
+        if i < len(velocity):
+            K.append(0)
+            K[i] += (1/2 * mass[i] * velocity[i] ** 2)
     return K
+    
 
 def findLagrangian(velocity, mass, potentialEnergy):
     """
@@ -37,7 +42,9 @@ def findLagrangian(velocity, mass, potentialEnergy):
                potentialEnergy - potential energy of the object
     #Output: Based off formula L = K - U, we can find Lagrangian
     """
-    L = findKineticEnergy(mass, velocity) - potentialEnergy
+    L = []
+    for i in range(0, len(mass)):
+        L.append(0)
+        L[i] += (findKineticEnergy(mass, velocity)[i] - potentialEnergy)
     return L
-
 
