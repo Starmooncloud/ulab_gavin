@@ -25,11 +25,13 @@ def findKineticEnergy(mass, velocity):
                velocity - instantenous velocities of each object
     #Output: Based off formula K = 1/2 mv^2, we can calculate kinetic energy
     """
-    K = np.array([])
-    for i in mass:
+    K = []
+    for i in range(0, len(mass)):
         if i < len(velocity):
-            K.append(1/2 * mass[i] * velocity[i] ** 2)
+            K.append(0)
+            K[i] += (1/2 * mass[i] * velocity[i] ** 2)
     return K
+    
 
 def findLagrangian(velocity, mass, potentialEnergy):
     """
@@ -41,8 +43,8 @@ def findLagrangian(velocity, mass, potentialEnergy):
     #Output: Based off formula L = K - U, we can find Lagrangian
     """
     L = []
-    for i in mass:
-        L.append(findKineticEnergy(mass, velocity) - potentialEnergy)
+    for i in range(0, len(mass)):
+        L.append(0)
+        L[i] += (findKineticEnergy(mass, velocity)[i] - potentialEnergy)
     return L
-
 
